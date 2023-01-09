@@ -1,6 +1,11 @@
 package trabPrat;
 import Execoes.*;
 import Utilizadores.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,6 +15,8 @@ import java.util.Map;
 public class criarUsers implements Serializable {
 
     private Map<String, Utilizador> utilizadores;
+    
+    private static criarUsers bd=null;
 
     public criarUsers(){
 
@@ -19,6 +26,15 @@ public class criarUsers implements Serializable {
          Admin admin = new Admin("admin","Administrador", "1234");
          utilizadores.put(admin.getUsername(), admin);
     }
+    
+
+        public static criarUsers getInstance() {
+        if (bd == null) {
+            bd = new criarUsers();
+        }
+        return bd;
+    }
+    
 
 
     public List<Utilizador>listarUtilizadores(){
@@ -86,26 +102,35 @@ public class criarUsers implements Serializable {
     }
 
 
-    //alterar dados do
-    public void alterarDadosDono( novo){
-        Cliente c1=null;
-        for(Utilizador util:this.listarUtilizadores()){
-            if(util instanceof Cliente){
-                if(util.getId() == novo.getId()){
-                    util.setUsername(novo.getUsername());
-                    util.setNome(novo.getNome());
-                }
-            }
+    
+    
+    
+    
+    public static void serializar(String filename) {
+        // Serializar um objeto para ficheiro
+        try (FileOutputStream fileOut = new FileOutputStream(filename);
+                ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
+            out.writeObject(bd);
+            System.out.println("Serialized data is saved in " + filename);
+        } catch (IOException ex) {
+            System.out.println("Erro: " + ex.getMessage());
         }
     }
 
-
-
-
-
-
-
-
+    public static void desserializar(String filename) {
+        try {
+            FileInputStream fileIn = new FileInputStream(filename);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            bd = (criarUsers) in.readObject();
+            in.close();
+            fileIn.close();
+        } catch (IOException ex) {
+            System.out.println("Erro: " + ex.getMessage());
+        } catch (ClassNotFoundException ex) {
+            System.out.println("Cliente class not found. " + ex.getMessage());
+        }
+    
+    }
 
 
 
@@ -119,14 +144,7 @@ public class criarUsers implements Serializable {
         this.utilizadores = utilizadores;
     }
 
-
-
-
-
-
-
-
-
+    
 
 
 }

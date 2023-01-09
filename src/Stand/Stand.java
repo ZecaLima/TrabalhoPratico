@@ -12,9 +12,10 @@ public class Stand {
     public Stand(){
         
     List<Veiculo> veiculos = new ArrayList<>();
-        
-        //listar veiculos para cliente
-         public List<Veiculo> listarVeiculos(){
+    }
+    
+    //listar veiculos para cliente
+    public List<Veiculo> listarVeiculos(){
             List<Veiculo> veiculos = new ArrayList<>();
             for(Veiculo v1: this.veiculos){
                 if(v1.isActive() == true && v1.isReservado() == false){
@@ -22,7 +23,8 @@ public class Stand {
                     +"Modelo"+v1.getModelo());
                 }
             }
-        }
+            return veiculos;
+    }
 
         //listar veiculos do dono
         public List<Veiculo> listarTodosVeiculos(){
@@ -32,12 +34,11 @@ public class Stand {
                             +"Modelo"+v1.getModelo()+"Reservado: "+v1.isReservado());
                 }
             }
+            return veiculos;
         }
 
 
 
 
     }
-
-}
 
