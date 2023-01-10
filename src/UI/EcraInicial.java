@@ -14,7 +14,7 @@ import trabPrat.*;
  *
  * @author 35191
  */
-public class EcraInicial extends javax.swing.JFrame {
+public class EcraInicial extends javax.swing.JFrame{
 
     
     private JPanel painelVisivel ;
@@ -29,7 +29,7 @@ public class EcraInicial extends javax.swing.JFrame {
         stackPanels = new Stack <> () ;
         this.painelVisivel = this.painelInicial;
         
-             
+        criarUsers.getInstance().desserializar("filename");
         
         this.setDefaultCloseOperation(EcraInicial.DO_NOTHING_ON_CLOSE);
         this.addWindowListener(new WindowAdapter() {
@@ -41,13 +41,9 @@ public class EcraInicial extends javax.swing.JFrame {
                 frame.dispose();
             }
         });
-        
-        
-        
-        
+       
     }
     
- 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -57,12 +53,23 @@ public class EcraInicial extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+	
+	  painelInicial = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        btnRegistar = new javax.swing.JButton();
+        btn_Entrar = new javax.swing.JButton();
+	
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+	  setSize(new java.awt.Dimension(800, 600));
 
+	
         jButton1.setText("Registar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,11 +184,4 @@ public class EcraInicial extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JPanel painelInicial;
 
-    private void avançarPainel(Register registo, JPanel painelInicial) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    private void avançarPainel(Login log, JPanel painelInicial) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

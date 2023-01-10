@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6b72c3ba-521f-47d1-8b94-33abc981c477" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../build/classes/UI/EcraInicial.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../build/classes/UI/EcraInicial.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../build/classes/UI/MenuAdmin$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../build/classes/UI/MenuAdmin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../build/classes/UI/MenuUser$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../build/classes/UI/MenuUser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../build/classes/UI/Register$6.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../build/classes/UI/Sucesso.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../build/classes/UI/Sucesso.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectId" id="2K6dPLqizowAeM7hAYPMIdsvIi8" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <created>1673298954735</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1673298954735</updated>
+      <workItem from="1673298964111" duration="16000" />
+      <workItem from="1673299104312" duration="1000" />
+    </task>
+    <servers />
+  </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+</project>

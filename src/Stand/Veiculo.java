@@ -4,20 +4,50 @@ import java.io.Serializable;
 import java.util.*;
 
 public class Veiculo implements Serializable {
-    private String id;
+    
+    private static int numVeiculo=0;
+    
+    private int id=0;
     private String marca;
     private String modelo;
     private boolean isActive=true;
     private boolean Reservado=false;
     private Date dataVenda=null;
-
-
-    public Veiculo(String id, String marca, String modelo, Date dataVenda) {
-        this.id=id;
-        this.marca = marca;
-        this.modelo = modelo;
-        this.dataVenda = dataVenda;
+    
+    
+    public Veiculo(int id, String marca, String modelo, Date dataVenda) {
+       this.id=Veiculo.numVeiculo +1;
+       this.marca = marca;
+       this.modelo = modelo;
+       this.dataVenda = dataVenda;
     }
+    
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public boolean isIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
+    }
+    
+
+    public static int getNumVeiculo() {
+        return numVeiculo;
+    }
+
+    public static void setNumVeiculo(int numVeiculo) {
+        Veiculo.numVeiculo = numVeiculo;
+    }
+
 
     public String getMarca() {
         return marca;
@@ -57,13 +87,6 @@ public class Veiculo implements Serializable {
 
     public void setDataVenda(Date dataVenda) {
         this.dataVenda = dataVenda;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
+    } 
+    
 }

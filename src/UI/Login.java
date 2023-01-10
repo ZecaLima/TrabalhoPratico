@@ -3,23 +3,30 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package UI;
+import Execoes.ContaNaoReconhecida;
+import Utilizadores.Admin;
+import trabPrat.*;
+
 
 /**
  *
  * @author jcarl
  */
-public class Login extends javax.swing.JFrame {
+public class Login extends javax.swing.JPanel {
+    
+    private EcraInicial frame;
+    
+    private String user,password;
+    
+    private Utilizador util;
 
     /**
      * Creates new form Login
      */
-    public Login() {
+    public Login(EcraInicial frame) {
         initComponents();
-        this.errorLabel.setVisible(false);
-    }
-
-    Login(EcraInicial aThis) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.frame = frame;
+        this.jLabelContaNaoReconhecida.setVisible(false);
     }
 
     /**
@@ -129,15 +136,24 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String user = this.jTextField1.getText();
-        if(user.equals("user")){
-            this.dispose();
-            new MenuUser().setVisible(true);
-        }
-        else if(user.equals("admin")){
-            this.dispose();
-            new MenuAdmin().setVisible(true);
-        }
+       this.user = this.jTextFieldUserName.getText() ;
+       this.password = this.jTextPasswd.getText();
+  
+       try {
+           util = criarUsers.getInstance().loginSistema(this.user, this.password) ;
+       } catch (ContaNaoReconhecidaException e) {
+           this.jLabelContaNaoReconhecida.setVisible(true);
+       }
+       if (util instanceof Admin) {
+           Admin admin = (Admin) util ;
+           MenuAdmin pAdmin = new MenuAdmin (this.frame, admin);
+           this.frame.avancarPainel(Admin, this);
+       }
+       if (util instanceof Cliente) {
+           Cliente cliente = (Cliente) util ;
+           Ecra_Menu_Cliente menuCliente = new Ecra_Menu_Cliente (this.frame, cliente) ;
+           this.frame.AvançarParaPainel(menuCliente, this);
+       }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MousePressed
@@ -191,4 +207,11 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
+    private javax.swing.JLabel jLabelContaNaoReconhecida;
+   
+    private javax.swing.JTextField jTextFieldUserName;
+    private javax.swing.JTextField jTextPasswd;
+    
+
+
 }

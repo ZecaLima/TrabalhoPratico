@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class criarUsers implements Serializable {
+public class criarUsers implements Serializable{
 
     private Map<String, Utilizador> utilizadores;
     
@@ -100,9 +100,6 @@ public class criarUsers implements Serializable {
             }
         }
     }
-
-
-    
     
     
     
@@ -144,7 +141,5 @@ public class criarUsers implements Serializable {
         this.utilizadores = utilizadores;
     }
 
-    
-
-
+   
 }
