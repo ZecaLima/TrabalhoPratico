@@ -67,6 +67,9 @@ public class Register extends javax.swing.JPanel{
         errorLabel = new javax.swing.JLabel();
         jComboBoxTipoUtilizador = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
+	  jTextFieldUser = new javax.swing.JTextField();
+        jTextFieldPasswd = new javax.swing.JTextField();
+	  jTextFieldNome = new javax.swing.JTextField();
 
       
         setSize(new java.awt.Dimension(960, 540));
@@ -132,6 +135,10 @@ public class Register extends javax.swing.JPanel{
         jTextField5.setBorder(null);
         jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, 680, 30));
 
+
+
+
+
         jButton1.setBackground(new java.awt.Color(102, 102, 102));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
@@ -148,6 +155,10 @@ public class Register extends javax.swing.JPanel{
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 430, -1, -1));
 
+
+
+
+
         errorLabel.setForeground(new java.awt.Color(255, 0, 0));
         errorLabel.setText("Dados Inválidos!");
         errorLabel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -157,13 +168,15 @@ public class Register extends javax.swing.JPanel{
         });
         jPanel1.add(errorLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 400, -1, -1));
 
-        jComboBoxTipoUtilizador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxTipoUtilizador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Escolha um tipo de utilizador", "Cliente", "Dono Stand", "Admin" }));
         jComboBoxTipoUtilizador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxTipoUtilizadorActionPerformed(evt);
             }
         });
         jPanel1.add(jComboBoxTipoUtilizador, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, 550, 30));
+
+
 
         jButton2.setText("Voltar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -210,7 +223,20 @@ public class Register extends javax.swing.JPanel{
                 } catch (UsernameRepetidoException ex) {
                     this.jLabelUserRepetido.setVisible(true);
                 }
+                break; 
+            case "Admin":
+                try {
+                    criarUsers.getInstance().registarUtilizador(new Admin(this.jTextFieldUser.getText(), this.jTextFieldPasswd.getText(), this.jTextFieldNome.getText()));
+                    Sucesso sucesso2 = new Sucesso(this.frame, true);
+                    sucesso2.setEnabled(true);
+                    sucesso2.setVisible(true);
+                    criarUsers.serializar("DB");
+                    this.frame.retrocederPainel();
+                } catch (UsernameRepetidoException ex) {
+                    this.jLabelUserRepetido.setVisible(true);
+                }
                 break;
+               
     }//GEN-LAST:event_jButton1ActionPerformed
     }
         
@@ -274,5 +300,10 @@ public class Register extends javax.swing.JPanel{
     private javax.swing.JTextField jTextFieldUser;
     
     private javax.swing.JLabel lbl_Registo;
+
+   
+
+
+  
    
 }

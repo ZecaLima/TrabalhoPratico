@@ -55,13 +55,11 @@ public class EcraInicial extends javax.swing.JFrame{
     private void initComponents() {
 	
 	  painelInicial = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        jPainel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        btnRegistar = new javax.swing.JButton();
-        btn_Entrar = new javax.swing.JButton();
 	
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -104,8 +102,7 @@ public class EcraInicial extends javax.swing.JFrame{
                     .addComponent(jButton2))
                 .addGap(105, 105, 105))
         );
-
-        pack();
+		pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -116,6 +113,7 @@ public class EcraInicial extends javax.swing.JFrame{
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Login log = new Login(this);
         this.avançarPainel(log, this.painelInicial);
+        System.out.print("Deu");
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -174,14 +172,23 @@ public class EcraInicial extends javax.swing.JFrame{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    // End of variables declaration//GEN-END:variables
-    private javax.swing.JButton btnRegistar;
-    private javax.swing.JButton btn_Entrar;
+
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPainel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JPanel painelInicial;
+    // End of variables declaration//GEN-END:variables
+
+    void avançarParaPainel(MenuUser cliente1, Login aThis) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    void avançarPainel(MenuAdmin pAdmin, Login aThis) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+
 
 }

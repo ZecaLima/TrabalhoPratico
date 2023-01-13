@@ -4,18 +4,28 @@
  */
 package UI;
 
+import Utilizadores.Admin;
+
 /**
  *
  * @author jcarl
  */
 public class MenuAdmin extends javax.swing.JFrame {
+    
+    private EcraInicial frame;
+    
+    private final Admin admin;
+    
+    
+    
 
     /**
      * Creates new form MenuAdmin
      */
-    public MenuAdmin() {
+    public MenuAdmin(EcraInicial frane, Admin admin) {
         initComponents();
-        TrocarMenu(1);
+        this.admin = admin;
+        this.frame = frame;
     }
 
     /**
@@ -43,9 +53,7 @@ public class MenuAdmin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setMaximumSize(new java.awt.Dimension(1366, 778));
         setMinimumSize(new java.awt.Dimension(1366, 778));
-        setPreferredSize(new java.awt.Dimension(1366, 778));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         sidePanel.setBackground(new java.awt.Color(8, 32, 52));
@@ -134,7 +142,7 @@ public class MenuAdmin extends javax.swing.JFrame {
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Menu 2");
-        Menu2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 350, -1, -1));
+        Menu2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 346, -1, 20));
 
         Menu3.setBackground(new java.awt.Color(12, 45, 72));
         Menu3.setMaximumSize(new java.awt.Dimension(1110, 780));
@@ -182,8 +190,7 @@ public class MenuAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MousePressed
-        this.dispose();
-        new Login().setVisible(true);
+
     }//GEN-LAST:event_jButton2MousePressed
 
     private void jButton3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MousePressed
@@ -223,15 +230,8 @@ public class MenuAdmin extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MenuAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        }
         //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuAdmin().setVisible(true);
-            }
-        });
-    }
     
     
     

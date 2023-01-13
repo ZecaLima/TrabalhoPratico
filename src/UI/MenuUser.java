@@ -4,6 +4,8 @@
  */
 package UI;
 
+import Utilizadores.Cliente;
+
 /**
  *
  * @author jcarl
@@ -16,6 +18,10 @@ public class MenuUser extends javax.swing.JFrame {
     public MenuUser() {
         initComponents();
         TrocarMenu(1);
+    }
+
+    MenuUser(EcraInicial frame, Cliente cliente) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
