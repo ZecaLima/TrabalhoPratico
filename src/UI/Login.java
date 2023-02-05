@@ -3,35 +3,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package UI;
-import Execoes.*;
-import Utilizadores.Admin;
-import Utilizadores.Cliente;
-import Utilizadores.Utilizador;
-import trabPrat.*;
-import UI.EcraInicial.*;
 
-
+import BLL.*;
 /**
  *
  * @author jcarl
  */
-public class Login extends javax.swing.JPanel {
-    
-    private EcraInicial frame;
-    
-    private String user,password;
-    
-    private Utilizador util;
-
+public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
-    public Login(EcraInicial frame) {
+    BLLLogin l = new BLLLogin();
+    
+    public Login() {
         initComponents();
-        this.frame = frame;
-        this.jLabelContaNaoReconhecida.setVisible(false);
+        errorLogin.setVisible(false);
+        errorRegisto.setVisible(false);
+        TrocarMenu(1);   
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,120 +31,398 @@ public class Login extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-
-  	  jLabel2 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        LoginPanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextFieldUserName = new javax.swing.JTextField();
+        login_email_input = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-	  jPanel1 = new javax.swing.JPanel();
-        jTextFieldPassword = new javax.swing.JTextField();
-        jLabelContaNaoReconhecida = new javax.swing.JLabel();
-        jButtonRetroceder = new javax.swing.JButton();
-        jButtonEntrar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        login_password_input = new javax.swing.JPasswordField();
+        jLabel6 = new javax.swing.JLabel();
+        errorLogin = new javax.swing.JLabel();
+        RegisterPanel = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        registo_password_input = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        registo_nome_input = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        registo_email_input = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        registo_telemovel_input = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        errorRegisto = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(153, 255, 153));
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(146, 129, 102));
+        setMaximumSize(new java.awt.Dimension(1366, 745));
+        setMinimumSize(new java.awt.Dimension(1366, 745));
+        setPreferredSize(new java.awt.Dimension(1366, 745));
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel2.setText("Bem Vindo");
+        jPanel2.setBackground(new java.awt.Color(255, 51, 51));
 
-        jLabel4.setText("User Name:");
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/poster.png"))); // NOI18N
 
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        LoginPanel.setBackground(new java.awt.Color(146, 129, 102));
+        LoginPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Login");
+        LoginPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 40, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Email:");
+        LoginPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 90, -1));
+
+        login_email_input.setBackground(new java.awt.Color(255, 255, 255));
+        login_email_input.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        login_email_input.setForeground(new java.awt.Color(0, 0, 0));
+        login_email_input.setBorder(null);
+        login_email_input.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                login_email_inputActionPerformed(evt);
+            }
+        });
+        LoginPanel.add(login_email_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 440, 40));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Password:");
+        LoginPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, -1, -1));
 
-        jLabelContaNaoReconhecida.setText("Conta não reconhecida");
-
-        jButtonRetroceder.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonRetroceder.setText("Voltar");
-        jButtonRetroceder.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRetrocederActionPerformed(evt);
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 0, 0));
+        jButton1.setText("Login");
+        jButton1.setBorder(null);
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton1MousePressed(evt);
             }
         });
+        LoginPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 450, 260, 50));
 
-        jButtonEntrar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonEntrar.setText("Entrar");
-        jButtonEntrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEntrarActionPerformed(evt);
+        login_password_input.setBackground(new java.awt.Color(255, 255, 255));
+        login_password_input.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        login_password_input.setForeground(new java.awt.Color(0, 0, 0));
+        LoginPanel.add(login_password_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 360, 440, 40));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Ainda não possui conta? Pode criar uma aqui cliquando aqui!");
+        jLabel6.setToolTipText("");
+        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel6MousePressed(evt);
             }
         });
+        LoginPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 510, -1, -1));
 
+        errorLogin.setBackground(new java.awt.Color(255, 0, 51));
+        errorLogin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        errorLogin.setForeground(new java.awt.Color(153, 0, 0));
+        errorLogin.setText("Combinação username/password inválida!");
+        LoginPanel.add(errorLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 410, 300, 20));
 
-        setMinimumSize(new java.awt.Dimension(640, 360));
+        jLayeredPane1.add(LoginPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 0, 680, 720));
 
-        jPanel1.setBackground(new java.awt.Color(12, 45, 72));
-        jPanel1.setMaximumSize(new java.awt.Dimension(640, 360));
-        jPanel1.setMinimumSize(new java.awt.Dimension(640, 360));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        RegisterPanel.setBackground(new java.awt.Color(146, 129, 102));
+        RegisterPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-     
-        
-   
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Registo");
+        RegisterPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        registo_password_input.setBackground(new java.awt.Color(255, 255, 255));
+        registo_password_input.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        registo_password_input.setForeground(new java.awt.Color(0, 0, 0));
+        registo_password_input.setBorder(null);
+        registo_password_input.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registo_password_inputActionPerformed(evt);
+            }
+        });
+        RegisterPanel.add(registo_password_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 440, 40));
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Password:");
+        RegisterPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 90, -1));
+
+        registo_nome_input.setBackground(new java.awt.Color(255, 255, 255));
+        registo_nome_input.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        registo_nome_input.setForeground(new java.awt.Color(0, 0, 0));
+        registo_nome_input.setBorder(null);
+        registo_nome_input.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registo_nome_inputActionPerformed(evt);
+            }
+        });
+        RegisterPanel.add(registo_nome_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, 440, 40));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Nome:");
+        RegisterPanel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, 90, -1));
+
+        registo_email_input.setBackground(new java.awt.Color(255, 255, 255));
+        registo_email_input.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        registo_email_input.setForeground(new java.awt.Color(0, 0, 0));
+        registo_email_input.setBorder(null);
+        registo_email_input.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registo_email_inputActionPerformed(evt);
+            }
+        });
+        RegisterPanel.add(registo_email_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 440, 40));
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Email");
+        RegisterPanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 90, -1));
+
+        registo_telemovel_input.setBackground(new java.awt.Color(255, 255, 255));
+        registo_telemovel_input.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        registo_telemovel_input.setForeground(new java.awt.Color(0, 0, 0));
+        registo_telemovel_input.setBorder(null);
+        registo_telemovel_input.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registo_telemovel_inputActionPerformed(evt);
+            }
+        });
+        RegisterPanel.add(registo_telemovel_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 440, 440, 40));
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Telemovel:");
+        RegisterPanel.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 400, 100, -1));
+
+        errorRegisto.setBackground(new java.awt.Color(255, 0, 51));
+        errorRegisto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        errorRegisto.setForeground(new java.awt.Color(153, 0, 0));
+        errorRegisto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        errorRegisto.setText("Erro Registo");
+        RegisterPanel.add(errorRegisto, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 500, 300, 20));
+
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(0, 0, 0));
+        jButton2.setText("Registar");
+        jButton2.setBorder(null);
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton2MousePressed(evt);
+            }
+        });
+        RegisterPanel.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 540, 260, 50));
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Já possui conta? Pode fazer Login cliquando aqui!");
+        jLabel12.setToolTipText("");
+        jLabel12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel12MousePressed(evt);
+            }
+        });
+        RegisterPanel.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 600, -1, -1));
+
+        jLayeredPane1.add(RegisterPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 0, 680, 720));
+
+        getContentPane().add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 0, 690, 720));
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void login_email_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_email_inputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_login_email_inputActionPerformed
+
+    private void jLabel6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MousePressed
+        TrocarMenu(2);
+    }//GEN-LAST:event_jLabel6MousePressed
+
+    private void registo_password_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registo_password_inputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_registo_password_inputActionPerformed
+
+    private void registo_nome_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registo_nome_inputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_registo_nome_inputActionPerformed
+
+    private void registo_email_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registo_email_inputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_registo_email_inputActionPerformed
+
+    private void registo_telemovel_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registo_telemovel_inputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_registo_telemovel_inputActionPerformed
+
+    private void jLabel12MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MousePressed
+        TrocarMenu(1);
+    }//GEN-LAST:event_jLabel12MousePressed
+
+    private void jButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MousePressed
+        
+        
+        
+        if(this.registo_email_input.getText().isEmpty() || this.registo_password_input.getText().isEmpty()|| this.registo_nome_input.getText().isEmpty()|| this.registo_telemovel_input.getText().isEmpty()){
+            this.errorRegisto.setText("Existem campos por preencher");
+            this.errorRegisto.setVisible(true);
+        }else{
+            String email = this.registo_email_input.getText();
+            String password = this.registo_password_input.getText();
+            String nome = this.registo_nome_input.getText();
+            String telemovel = this.registo_telemovel_input.getText();
+
+            int status = l.Registo(email, password, nome, telemovel);
+            System.out.println(status);
+            
+            switch (status) {
+                case 1:
+                    this.errorRegisto.setText("Email já em uso!");
+                    this.errorRegisto.setVisible(true);
+                    break;
+                case 2:this.errorRegisto.setText("Email Inválido!");
+                    this.errorRegisto.setVisible(true);
+                    break;
+                case 3:
+                    this.errorRegisto.setText("Numero de Telemovel Inválido!");
+                    this.errorRegisto.setVisible(true);
+                    break;
+                case 0:
+                    TrocarMenu(1);
+                    break;
+                default:
+                    throw new AssertionError();
+        }
+        }
+    }//GEN-LAST:event_jButton2MousePressed
+
+    private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
+        
+        if(this.login_email_input.getText().isEmpty() || this.login_password_input.getText().isEmpty()){
+            this.errorLogin.setVisible(true);
+        }else{           
+            
+            String email = this.login_email_input.getText();
+            String password = this.login_password_input.getText();
 
 
+            if(!l.Login(email, password)) {
+                this.errorLogin.setVisible(true);
+            }else {
+                
+                System.out.println("deu");
+            }
+        }
+    }//GEN-LAST:event_jButton1MousePressed
 
-     private void jButtonRetrocederActionPerformed(java.awt.event.ActionEvent evt){
-       this.frame.retrocederPainel();   
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Login().setVisible(true);
+            }
+        });
     }
-
-    private void jButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {                                         
-       this.user = this.jTextFieldUserName.getText() ;
-       this.password = this.jTextFieldPassword.getText();
-  
-       try {
-           util = criarUsers.getInstance().loginSistema(this.user, this.password) ;
-       } catch (ContaNaoReconhecida e) {
-           this.jLabelContaNaoReconhecida.setVisible(true);
-       }
-       if (util instanceof Admin) {
-           Admin admin = (Admin) util ;
-           MenuAdmin pAdmin = new MenuAdmin (this.frame, admin);
-           this.frame.avançarPainel(pAdmin , this);
-       }
-       if (util instanceof Cliente) {
-           Cliente cliente = (Cliente) util ;
-           MenuUser cliente1 = new MenuUser (this.frame , cliente);
-           this.frame.avançarParaPainel(cliente1, this);
-       }
-    }
-
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-  
+    private javax.swing.JPanel LoginPanel;
+    private javax.swing.JPanel RegisterPanel;
+    private javax.swing.JLabel errorLogin;
+    private javax.swing.JLabel errorRegisto;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
-
     private javax.swing.JLabel jLabel3;
-
-    private javax.swing.JPanel jPanel1;
-
-    private javax.swing.JTextField jTextFieldUserName;
-    private javax.swing.JTextField jTextFieldPassword;
-
-    private javax.swing.JButton jButtonEntrar;
-    private javax.swing.JButton jButtonRetroceder;
-
-
     private javax.swing.JLabel jLabel4;
-
     private javax.swing.JLabel jLabel5;
-
-    private javax.swing.JLabel jLabelContaNaoReconhecida;
-   
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField login_email_input;
+    private javax.swing.JPasswordField login_password_input;
+    private javax.swing.JTextField registo_email_input;
+    private javax.swing.JTextField registo_nome_input;
+    private javax.swing.JTextField registo_password_input;
+    private javax.swing.JTextField registo_telemovel_input;
     // End of variables declaration//GEN-END:variables
+
+    private void TrocarMenu(int num){
+        LoginPanel.setVisible(false);
+        RegisterPanel.setVisible(false);
+        this.errorLogin.setVisible(false);
+        this.errorRegisto.setVisible(false);
+        
+        switch(num) {
+            case 1: LoginPanel.setVisible(true); break;
+            case 2: RegisterPanel.setVisible(true); break;
+            default: break;
+        }
+    }
+
+
+
+
 
 
 }
