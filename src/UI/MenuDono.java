@@ -4,20 +4,31 @@
  */
 package UI;
 
+import BLL.BLLMenuDono;
+import BLL.dados;
+import DAL.Carro;
+import DAL.Cliente;
 import DAL.DonoStand;
+import DAL.Reserva;
 import DAL.Utilizador;
+import DAL.Venda;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author jcarl
  */
 public class MenuDono extends javax.swing.JFrame {
-
+    dados d = new dados();
+    BLLMenuDono dono = new BLLMenuDono();
     /**
      * Creates new form MenuDono
      */
     public MenuDono(Utilizador dono) {
         initComponents();
+        TrocarMenu(1);
     }
 
     /**
@@ -30,29 +41,579 @@ public class MenuDono extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        CarrosPanel = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        carrosTable = new javax.swing.JTable();
+        addCarro = new javax.swing.JButton();
+        editCarro = new javax.swing.JButton();
+        removeCarro = new javax.swing.JButton();
+        ReservasPanel = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        reservasTable = new javax.swing.JTable();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        CriarVendasPanel = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        venda_clientes = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        venda_carros = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
+        ClientesPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        clientesTable = new javax.swing.JTable();
+        addCarroPanel = new javax.swing.JPanel();
+        jButton6 = new javax.swing.JButton();
+        errorCarro = new javax.swing.JLabel();
+        ModeloInput = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        MarcaInput = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        PreçoInput = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        VendasPanel = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        vendasTable = new javax.swing.JTable();
+        jButton8 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1366, 745));
         setMinimumSize(new java.awt.Dimension(1366, 745));
+        setPreferredSize(new java.awt.Dimension(1366, 745));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(127, 109, 82));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1370, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 70, Short.MAX_VALUE)
-        );
+        jButton1.setBackground(new java.awt.Color(127, 109, 82));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Vendas");
+        jButton1.setBorder(null);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 204, 70));
+
+        jButton2.setBackground(new java.awt.Color(127, 109, 82));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Gerir Carros");
+        jButton2.setBorder(null);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 204, 70));
+
+        jButton3.setBackground(new java.awt.Color(127, 109, 82));
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Gerir Reservas");
+        jButton3.setBorder(null);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 204, 70));
+
+        jButton4.setBackground(new java.awt.Color(127, 109, 82));
+        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setText("Logout");
+        jButton4.setBorder(null);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 0, 204, 70));
+
+        jButton5.setBackground(new java.awt.Color(127, 109, 82));
+        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setText("Ver Clientes");
+        jButton5.setBorder(null);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 0, 204, 70));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 70));
 
+        CarrosPanel.setBackground(new java.awt.Color(146, 129, 102));
+        CarrosPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        carrosTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Marca", "Modelo", "Estado", "Preço"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(carrosTable);
+
+        CarrosPanel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 1240, 440));
+
+        addCarro.setBackground(new java.awt.Color(51, 153, 0));
+        addCarro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        addCarro.setForeground(new java.awt.Color(255, 255, 255));
+        addCarro.setText("Adicionar");
+        addCarro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addCarroActionPerformed(evt);
+            }
+        });
+        CarrosPanel.add(addCarro, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 530, 180, 40));
+
+        editCarro.setBackground(new java.awt.Color(153, 153, 0));
+        editCarro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        editCarro.setForeground(new java.awt.Color(255, 255, 255));
+        editCarro.setText("Alterar Estado");
+        editCarro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editCarroActionPerformed(evt);
+            }
+        });
+        CarrosPanel.add(editCarro, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 530, 180, 40));
+
+        removeCarro.setBackground(new java.awt.Color(153, 0, 0));
+        removeCarro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        removeCarro.setForeground(new java.awt.Color(255, 255, 255));
+        removeCarro.setText("Remover");
+        removeCarro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeCarroActionPerformed(evt);
+            }
+        });
+        CarrosPanel.add(removeCarro, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 530, 180, 40));
+
+        ReservasPanel.setBackground(new java.awt.Color(146, 129, 102));
+        ReservasPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        reservasTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "IdReserva", "IdCliente", "IdCarro", "Data"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane6.setViewportView(reservasTable);
+
+        ReservasPanel.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 1150, 510));
+
+        jButton9.setBackground(new java.awt.Color(0, 153, 0));
+        jButton9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton9.setForeground(new java.awt.Color(255, 255, 255));
+        jButton9.setText("Confirmar Venda");
+        ReservasPanel.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 570, 160, 50));
+
+        jButton10.setBackground(new java.awt.Color(153, 0, 0));
+        jButton10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton10.setForeground(new java.awt.Color(255, 255, 255));
+        jButton10.setText("Cancelar Reserva");
+        ReservasPanel.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 570, 160, 50));
+
+        CriarVendasPanel.setBackground(new java.awt.Color(146, 129, 102));
+        CriarVendasPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        venda_clientes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "ID", "Email", "Nome", "Telemovel"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(venda_clientes);
+
+        CriarVendasPanel.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 420, 490));
+
+        venda_carros.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Marca", "Modelo", "Estado", "Preço"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(venda_carros);
+
+        CriarVendasPanel.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 120, 420, 490));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Carros");
+        CriarVendasPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 50, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Clientes");
+        CriarVendasPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, -1, -1));
+
+        jButton7.setBackground(new java.awt.Color(0, 153, 0));
+        jButton7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(255, 255, 255));
+        jButton7.setText("Vender");
+        jButton7.setBorder(null);
+        CriarVendasPanel.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 330, 130, 60));
+
+        ClientesPanel.setBackground(new java.awt.Color(146, 129, 102));
+        ClientesPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        clientesTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "ID", "Email", "Nome", "Telemovel"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(clientesTable);
+
+        ClientesPanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 1220, 550));
+
+        addCarroPanel.setBackground(new java.awt.Color(146, 129, 102));
+        addCarroPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton6.setBackground(new java.awt.Color(255, 255, 255));
+        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(0, 0, 0));
+        jButton6.setText("Adicionar Carro");
+        jButton6.setBorder(null);
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton6MousePressed(evt);
+            }
+        });
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        addCarroPanel.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 530, 260, 50));
+
+        errorCarro.setBackground(new java.awt.Color(255, 0, 51));
+        errorCarro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        errorCarro.setForeground(new java.awt.Color(153, 0, 0));
+        errorCarro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        errorCarro.setText("Erro Carro");
+        addCarroPanel.add(errorCarro, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 500, 300, 20));
+
+        ModeloInput.setBackground(new java.awt.Color(255, 255, 255));
+        ModeloInput.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        ModeloInput.setForeground(new java.awt.Color(0, 0, 0));
+        ModeloInput.setBorder(null);
+        ModeloInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModeloInputActionPerformed(evt);
+            }
+        });
+        addCarroPanel.add(ModeloInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 310, 470, 40));
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Modelo");
+        addCarroPanel.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 270, 90, -1));
+
+        MarcaInput.setBackground(new java.awt.Color(255, 255, 255));
+        MarcaInput.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        MarcaInput.setForeground(new java.awt.Color(0, 0, 0));
+        MarcaInput.setBorder(null);
+        MarcaInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MarcaInputActionPerformed(evt);
+            }
+        });
+        addCarroPanel.add(MarcaInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 220, 470, 40));
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Marca");
+        addCarroPanel.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, 120, -1));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Adicionar Carro");
+        addCarroPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 1280, -1));
+
+        PreçoInput.setBackground(new java.awt.Color(255, 255, 255));
+        PreçoInput.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        PreçoInput.setForeground(new java.awt.Color(0, 0, 0));
+        PreçoInput.setBorder(null);
+        PreçoInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PreçoInputActionPerformed(evt);
+            }
+        });
+        addCarroPanel.add(PreçoInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 410, 470, 40));
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("Preço");
+        addCarroPanel.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 370, 90, -1));
+
+        VendasPanel.setBackground(new java.awt.Color(146, 129, 102));
+        VendasPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        vendasTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "ID Venda", "Nome Cliente", "Marca", "Modelo", "Preco"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane5.setViewportView(vendasTable);
+
+        VendasPanel.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 1190, 530));
+
+        jButton8.setBackground(new java.awt.Color(0, 153, 0));
+        jButton8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(255, 255, 255));
+        jButton8.setText("Vender Carro");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        VendasPanel.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 590, 170, 50));
+
+        jLayeredPane1.setLayer(CarrosPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(ReservasPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(CriarVendasPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(ClientesPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(addCarroPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(VendasPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
+        jLayeredPane1.setLayout(jLayeredPane1Layout);
+        jLayeredPane1Layout.setHorizontalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addComponent(CarrosPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1364, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(ReservasPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addComponent(CriarVendasPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(ClientesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1370, Short.MAX_VALUE))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(addCarroPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addComponent(VendasPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        jLayeredPane1Layout.setVerticalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(CarrosPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(ReservasPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(CriarVendasPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(ClientesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(addCarroPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(VendasPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 1370, 650));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        this.dispose();
+        new Login().setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        TrocarMenu(1);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        TrocarMenu(2);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        TrocarMenu(3);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        TrocarMenu(4);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void addCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCarroActionPerformed
+        TrocarMenu(5);
+    }//GEN-LAST:event_addCarroActionPerformed
+
+    private void editCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCarroActionPerformed
+        if(carrosTable.getSelectedRow() != -1){
+            String[] opcoes = {"Desativado", "Reservado", "Disponivel"};
+            int resposta = JOptionPane.showOptionDialog(null, "Pretende alterar para que estado?", "Alterar estado",0, 3, null, opcoes, opcoes[0]);
+                String id = (String) carrosTable.getValueAt(carrosTable.getSelectedRow(), 0);
+                boolean resultado = dono.alterarEstado(id, resposta);
+                if (resultado=true) {
+                    JOptionPane.showMessageDialog(this, "Estado do Carro alterado com sucesso!");
+                    TrocarMenu(1);
+                }              
+        }else{
+           JOptionPane.showMessageDialog(this, "Selecione um Carro primeiro!!");
+        }
+    }//GEN-LAST:event_editCarroActionPerformed
+
+    private void jButton6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6MousePressed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        if(this.MarcaInput.getText().isEmpty() || this.ModeloInput.getText().isEmpty()||this.PreçoInput.getText().isEmpty()){
+            this.errorCarro.setText("Existem campos por preencher");
+            this.errorCarro.setVisible(true);
+        }else{
+            String marca = this.MarcaInput.getText();
+            String modelo = this.ModeloInput.getText();
+            String preco = this.PreçoInput.getText();
+
+            int status = dono.addCarro(marca, modelo, preco);
+            //System.out.println(status);
+
+            switch (status) {
+                case 1:
+                this.errorCarro.setText("Preço Inválido!");
+                this.errorCarro.setVisible(true);
+                break;
+                case 0:
+                TrocarMenu(1);
+                break;
+                default:
+                throw new AssertionError();
+            }
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void ModeloInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModeloInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ModeloInputActionPerformed
+
+    private void MarcaInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MarcaInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MarcaInputActionPerformed
+
+    private void PreçoInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PreçoInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PreçoInputActionPerformed
+
+    private void removeCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeCarroActionPerformed
+        if(carrosTable.getSelectedRow() != -1){
+            int resposta = JOptionPane.showConfirmDialog(this, "De certeza que pretende remover este Carro?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if(resposta == JOptionPane.YES_OPTION) {
+                String id = (String) carrosTable.getValueAt(carrosTable.getSelectedRow(), 0);
+                boolean resultado = d.removeCarro(id);
+                if (resultado=true) {
+                    JOptionPane.showMessageDialog(this, "Carro removido com sucesso!!");
+                    TrocarMenu(1);
+                }
+            }
+              
+        }else{
+           JOptionPane.showMessageDialog(this, "Selecione um Carro primeiro!!");
+        }
+    }//GEN-LAST:event_removeCarroActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        TrocarMenu(6);
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -91,6 +652,189 @@ public class MenuDono extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel CarrosPanel;
+    private javax.swing.JPanel ClientesPanel;
+    private javax.swing.JPanel CriarVendasPanel;
+    private javax.swing.JTextField MarcaInput;
+    private javax.swing.JTextField ModeloInput;
+    private javax.swing.JTextField PreçoInput;
+    private javax.swing.JPanel ReservasPanel;
+    private javax.swing.JPanel VendasPanel;
+    private javax.swing.JButton addCarro;
+    private javax.swing.JPanel addCarroPanel;
+    private javax.swing.JTable carrosTable;
+    private javax.swing.JTable clientesTable;
+    private javax.swing.JButton editCarro;
+    private javax.swing.JLabel errorCarro;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JButton removeCarro;
+    private javax.swing.JTable reservasTable;
+    private javax.swing.JTable venda_carros;
+    private javax.swing.JTable venda_clientes;
+    private javax.swing.JTable vendasTable;
     // End of variables declaration//GEN-END:variables
+
+    private void initUsersTable(){
+        ArrayList<Utilizador> users = d.getAllUsers();
+        ArrayList<Utilizador> clientes = new ArrayList<>();
+        
+        for(Utilizador aux: users){
+            if(aux instanceof Cliente){
+                clientes.add(aux);
+            }
+        }
+        
+        DefaultTableModel  clientesTableModel = (DefaultTableModel) clientesTable.getModel();
+        clientesTableModel.setRowCount(0);
+        for(int i = 0; i<clientes.size(); i++){
+            clientesTableModel.addRow(new Object[]{
+                clientes.get(i).getId(),
+                clientes.get(i).getEmail(),
+                clientes.get(i).getNome(),
+                clientes.get(i).getnTelemovel(),
+            });           
+        }
+    }
+    
+    
+    private void initCarrosTable(){
+        ArrayList<Carro> carros = d.getAllCarros();       
+        
+        DefaultTableModel  carrosTableModel = (DefaultTableModel) carrosTable.getModel();
+        carrosTableModel.setRowCount(0);
+        for(int i = 0; i<carros.size(); i++){
+            String state = "";
+            switch (carros.get(i).getEstado()){
+                case 0: state = "Desativado"; break;
+                case 1: state = "Reservado"; break;
+                case 2: state = "Disponível"; break;
+                    
+            }
+            carrosTableModel.addRow(new Object[]{
+                carros.get(i).getId(),
+                carros.get(i).getMarca(),
+                carros.get(i).getModelo(),
+                state,
+                carros.get(i).getPreco(),
+            });           
+        }
+    }
+    
+    private void initvenda_clientes(){
+        ArrayList<Utilizador> users = d.getAllUsers();
+        ArrayList<Utilizador> clientes = new ArrayList<>();
+        
+        for(Utilizador aux: users){
+            if(aux instanceof Cliente){
+                clientes.add(aux);
+            }
+        }
+        
+        DefaultTableModel  venda_clientesModel = (DefaultTableModel) venda_clientes.getModel();
+        venda_clientesModel.setRowCount(0);
+        for(int i = 0; i<clientes.size(); i++){
+            venda_clientesModel.addRow(new Object[]{
+                clientes.get(i).getId(),
+                clientes.get(i).getEmail(),
+                clientes.get(i).getNome(),
+                clientes.get(i).getnTelemovel(),
+            });           
+        }
+    }
+    
+    private void initvenda_carros(){
+        ArrayList<Carro> carros = d.getAllCarros();       
+        
+        DefaultTableModel  venda_carrosModel = (DefaultTableModel) venda_carros.getModel();
+        venda_carrosModel.setRowCount(0);
+        for(int i = 0; i<carros.size(); i++){
+            if(carros.get(i).getEstado()==2){
+                venda_carrosModel.addRow(new Object[]{
+                    carros.get(i).getId(),
+                    carros.get(i).getMarca(),
+                    carros.get(i).getModelo(),
+                    "Disponivel",
+                    carros.get(i).getPreco(),
+                });           
+            }
+        }
+    }
+    
+    private void initVendasTable(){
+        ArrayList<Venda> vendas = d.getAllVendas();       
+        
+        DefaultTableModel  vendasTableModel = (DefaultTableModel) vendasTable.getModel();
+        vendasTableModel.setRowCount(0);
+        for(int i = 0; i<vendas.size(); i++){
+            vendasTableModel.addRow(new Object[]{
+                vendas.get(i).getId(),
+                vendas.get(i).getIdCarro(),
+                vendas.get(i).getIdCliente(),
+            });           
+        }
+    }
+    
+    private void initReservasTable(){
+        ArrayList<Reserva> reservas = d.getAllReservas();       
+        
+        DefaultTableModel  reservasTableModel = (DefaultTableModel) reservasTable.getModel();
+        reservasTableModel.setRowCount(0);
+        for(int i = 0; i<reservas.size(); i++){
+            reservasTableModel.addRow(new Object[]{
+                reservas.get(i).getIdReserva(),
+                reservas.get(i).getIdCarro(),
+                reservas.get(i).getIdCliente(),
+                reservas.get(i).getData(),
+                    
+            });           
+        }
+    }
+    
+    
+    private void TrocarMenu(int num){
+        CarrosPanel.setVisible(false);
+        ReservasPanel.setVisible(false);
+        VendasPanel.setVisible(false);
+        CriarVendasPanel.setVisible(false);
+        ClientesPanel.setVisible(false);
+        addCarroPanel.setVisible(false);
+        
+        errorCarro.setVisible(false);
+        
+        switch(num) {
+            case 1: CarrosPanel.setVisible(true);initCarrosTable(); break;
+            case 2: ReservasPanel.setVisible(true); initReservasTable(); break;
+            case 3: VendasPanel.setVisible(true); initVendasTable(); break;
+            case 4: ClientesPanel.setVisible(true); initUsersTable(); break;
+            case 5: addCarroPanel.setVisible(true); break;
+            case 6: CriarVendasPanel.setVisible(true); initvenda_clientes(); initvenda_carros(); break;
+            default: break;
+        }
+    }
+
+
+
 }

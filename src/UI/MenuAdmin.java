@@ -79,6 +79,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1366, 745));
         setMinimumSize(new java.awt.Dimension(1366, 745));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(127, 109, 82));
@@ -158,7 +159,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Adicionar Dono Stand");
+        jLabel4.setText("Adicionar Admin");
         addAdminPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 1280, -1));
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -526,7 +527,7 @@ public class MenuAdmin extends javax.swing.JFrame {
             if(resposta == JOptionPane.YES_OPTION) {
                 String id = (String) adminTable.getValueAt(adminTable.getSelectedRow(), 0);
                 boolean resultado = d.removeUser(id);
-                    if (resultado=true) {
+                if (resultado=true) {
                     JOptionPane.showMessageDialog(this, "Admin removido com sucesso!!");
                     TrocarMenu(3);
                 }
@@ -817,6 +818,9 @@ public class MenuAdmin extends javax.swing.JFrame {
             });           
         }
     }
+    
+    
+    
     
     
     private void TrocarMenu(int num){

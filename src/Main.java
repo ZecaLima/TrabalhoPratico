@@ -27,12 +27,44 @@ public class Main {
         }
         
         
-        
-        ArrayList<Utilizador> users = d.getAllUsers();       
-        for (Utilizador cenas : users) {
-            System.out.println(cenas.getId()+ " - " + cenas.getEmail()+ " - " + cenas.getPassword());
+        File file2 = new File("carros.dat");        
+        if (!file2.exists()) {
+            try {
+                file2.createNewFile();
+                System.out.println("Ficheiro criado com sucesso.");
+            } catch (IOException e) {
+                System.out.println("Erro ao criar o ficheiro: " + e.getMessage());
+            }
+        } else {
+            System.out.println("File already exists.");
         }
-
+        
+        
+        File file3 = new File("reservas.dat");        
+        if (!file3.exists()) {
+            try {
+                file3.createNewFile();
+                System.out.println("Ficheiro criado com sucesso.");
+            } catch (IOException e) {
+                System.out.println("Erro ao criar o ficheiro: " + e.getMessage());
+            }
+        } else {
+            System.out.println("File already exists.");
+        }
+        
+        
+        File file4 = new File("vendas.dat");        
+        if (!file4.exists()) {
+            try {
+                file4.createNewFile();
+                System.out.println("Ficheiro criado com sucesso.");
+            } catch (IOException e) {
+                System.out.println("Erro ao criar o ficheiro: " + e.getMessage());
+            }
+        } else {
+            System.out.println("File already exists.");
+        }
+        
         
         new Login().setVisible(true);
         
