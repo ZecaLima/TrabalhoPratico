@@ -128,6 +128,20 @@ public class dados {
         return reservas;
     }
     
+    public void addReserva(Reserva reserva){
+        
+        ArrayList<Reserva> reservas = getAllReservas();
+        
+        reservas.add(reserva);
+        
+        try (FileOutputStream fos = new FileOutputStream("reservas.dat");
+            ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            oos.writeObject(reservas);
+        } catch (IOException e) {
+            System.out.println("Erro ao guardar no ficheiro: " + e.getMessage());
+        }        
+    }
+    
     
     public ArrayList<Venda> getAllVendas(){
         

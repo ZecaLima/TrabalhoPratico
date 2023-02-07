@@ -4,10 +4,13 @@
  */
 package UI;
 
+import BLL.BLLMenuCliente;
 import BLL.dados;
 import DAL.Carro;
 import DAL.Cliente;
+import DAL.Reserva;
 import DAL.Utilizador;
+import DAL.Venda;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -19,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MenuCliente extends javax.swing.JFrame {
     dados d = new dados();
+    BLLMenuCliente c = new BLLMenuCliente();
     /**
      * Creates new form MenuUser
      */
@@ -68,7 +72,12 @@ public class MenuCliente extends javax.swing.JFrame {
         carrosTable = new javax.swing.JTable();
         jButton6 = new javax.swing.JButton();
         reservasPanel = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        reservasTable = new javax.swing.JTable();
         comprasPanel = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        vendasTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1366, 745));
@@ -271,11 +280,61 @@ public class MenuCliente extends javax.swing.JFrame {
 
         reservasPanel.setBackground(new java.awt.Color(146, 129, 102));
         reservasPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        reservasTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "IdReserva", "IdCliente", "IdCarro", "Data"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane6.setViewportView(reservasTable);
+
+        jScrollPane2.setViewportView(jScrollPane6);
+
+        reservasPanel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 1110, 600));
+
         jLayeredPane1.add(reservasPanel);
         reservasPanel.setBounds(0, 0, 1370, 720);
 
         comprasPanel.setBackground(new java.awt.Color(146, 129, 102));
         comprasPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        vendasTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "ID Venda", "Nome Cliente", "Marca", "Modelo", "Preco"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(vendasTable);
+
+        comprasPanel.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 1150, 630));
+
         jLayeredPane1.add(comprasPanel);
         comprasPanel.setBounds(0, 0, 1370, 720);
 
@@ -316,14 +375,23 @@ public class MenuCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        String data = JOptionPane.showInputDialog("Escreva a data em que pretende realizar a reserva: (dd/mm/yyyy)");
         
-        final Pattern DATA_REGEX = Pattern.compile("^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-]\\d{4}$", Pattern.CASE_INSENSITIVE);
-        if((DATA_REGEX.matcher(data).matches())){
-            System.out.println("é data");
+        
+        if(carrosTable.getSelectedRow() != -1){
+            String data = JOptionPane.showInputDialog("Escreva a data em que pretende realizar a reserva: (dd/mm/yyyy)");
+        
+            final Pattern DATA_REGEX = Pattern.compile("^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-]\\d{4}$", Pattern.CASE_INSENSITIVE);
+            if((DATA_REGEX.matcher(data).matches())){
+                String idCarro = (String) carrosTable.getValueAt(carrosTable.getSelectedRow(), 0);
+                String idUser = this.perfil_id.getText();
+                c.efetuarReserva(idCarro, idUser, data);
+                TrocarMenu(1);
+            }else{
+                JOptionPane.showConfirmDialog(null, "Data Inválida!","Erro", JOptionPane.PLAIN_MESSAGE);
+            }             
         }else{
-            JOptionPane.showConfirmDialog(null, "Data Inválida!","Erro", JOptionPane.PLAIN_MESSAGE);
-        }
+           JOptionPane.showMessageDialog(this, "Selecione um Carro primeiro!!");
+        }   
         
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -384,15 +452,20 @@ public class MenuCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JLabel perfil_email;
     private javax.swing.JLabel perfil_id;
     private javax.swing.JLabel perfil_nome;
     private javax.swing.JLabel perfil_password;
     private javax.swing.JLabel perfil_telemovel;
     private javax.swing.JPanel reservasPanel;
+    private javax.swing.JTable reservasTable;
     private javax.swing.JPanel sideMenu;
     private javax.swing.JLabel sideMenuOpen;
+    private javax.swing.JTable vendasTable;
     // End of variables declaration//GEN-END:variables
 
     public void initCarrosTable(){
@@ -413,7 +486,39 @@ public class MenuCliente extends javax.swing.JFrame {
         }
     }
     
+    private void initReservasTable(){
+        ArrayList<Reserva> reservas = d.getAllReservas();       
+        
+        DefaultTableModel  reservasTableModel = (DefaultTableModel) reservasTable.getModel();
+        reservasTableModel.setRowCount(0);
+        for(int i = 0; i<reservas.size(); i++){
+            if(reservas.get(i).getIdCliente().equals(perfil_id.getText())){
+                reservasTableModel.addRow(new Object[]{
+                reservas.get(i).getIdReserva(),
+                reservas.get(i).getIdCarro(),
+                reservas.get(i).getIdCliente(),
+                reservas.get(i).getData(),                    
+            }); 
+            }
+                      
+        }
+    }
     
+    private void initVendasTable(){
+        ArrayList<Venda> vendas = d.getAllVendas();       
+        
+        DefaultTableModel  vendasTableModel = (DefaultTableModel) vendasTable.getModel();
+        vendasTableModel.setRowCount(0);
+        for(int i = 0; i<vendas.size(); i++){
+                if(vendas.get(i).getIdCliente().equals(perfil_id.getText())){
+                vendasTableModel.addRow(new Object[]{
+                    vendas.get(i).getId(),
+                    vendas.get(i).getIdCarro(),
+                    vendas.get(i).getIdCliente(),
+                });
+            }
+        }
+    }
     
     private void TrocarMenu(int i){
         sideMenu.setVisible(false);
@@ -426,7 +531,7 @@ public class MenuCliente extends javax.swing.JFrame {
         
         switch (i) {
             case 1:carrosPanel.setVisible(true); initCarrosTable(); break;
-            case 2:reservasPanel.setVisible(true); break;
+            case 2:reservasPanel.setVisible(true); initReservasTable(); break;
             case 3:comprasPanel.setVisible(true);break;
             case 4: this.PerfilPanel.setVisible(true); break;
             default:throw new AssertionError();
