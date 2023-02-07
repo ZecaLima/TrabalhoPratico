@@ -16,10 +16,10 @@ public class Reserva implements Serializable{
     String idReserva;
     String idCarro;
     String idCliente;
-    Date data;
+    String data;
 
     
-    public Reserva(String idCarro, String idCliente, Date data){
+    public Reserva(String idCarro, String idCliente, String data){
         this.idReserva = UUID.randomUUID().toString();
         this.idCarro = idCarro;
         this.idCliente = idCliente;
@@ -46,11 +46,11 @@ public class Reserva implements Serializable{
         this.idCliente = idCliente;
     }
     
-    public Date getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(String data) {
         this.data = data;
     }
 }
