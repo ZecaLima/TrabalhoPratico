@@ -4,11 +4,11 @@
  */
 package BLL;
 
-import DAL.Cliente;
-import DAL.Utilizador;
+import DAL.*;
+import UI.*;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
-import sun.security.util.Password;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,7 +24,17 @@ public class BLLLogin {
         for(Utilizador aux : users){
             if(aux.getEmail().equals(email)){
                 if(aux.getPassword().equals(password)){
-                    return true;
+                    if(aux instanceof Cliente){
+                        new MenuCliente(aux).setVisible(true);
+                        return true;
+                    }else if(aux instanceof DonoStand){
+                        new MenuDono(aux).setVisible(true);
+                        return true;
+                    }else if(aux instanceof Admin){
+                        new MenuAdmin(aux).setVisible(true);
+                        return true;
+                    }                   
+                    return false;
                 }
             }
         }       
@@ -51,6 +61,7 @@ public class BLLLogin {
                     if(existe==false){
                         Cliente registo = new Cliente(email, password, nome, telemovelint);
                         dados.addUser(registo);
+                        JOptionPane.showMessageDialog(null, "Registo Efetuado com sucesso!");
                         return 0;                     
                     }else{
                         return 1;

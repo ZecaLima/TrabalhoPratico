@@ -24,7 +24,6 @@ public class dados {
         try (FileInputStream fis = new FileInputStream("utilizador.dat");
              ObjectInputStream ois = new ObjectInputStream(fis)) {
             users = (ArrayList<Utilizador>) ois.readObject();
-            System.out.println("ArrayList read from file: " + users);
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Error reading from file: " + e.getMessage());
         }
@@ -41,12 +40,30 @@ public class dados {
         try (FileOutputStream fos = new FileOutputStream("utilizador.dat");
             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             oos.writeObject(users);
-            System.out.println("Users guardados com sucesso");
         } catch (IOException e) {
             System.out.println("Erro ao guardar no ficheiro: " + e.getMessage());
-        } 
+        }        
+    }
+    
+    public boolean removeUser(String id){
+        System.out.println("cheguei aqui");
+        ArrayList<Utilizador> users = getAllUsers();
         
+        for (int i = 0; i < users.size(); i++) {
+            Utilizador aux = users.get(i);
+            if (aux.getId().equals(id)) {
+                users.remove(aux);
+            }
+        }
         
+        try (FileOutputStream fos = new FileOutputStream("utilizador.dat");
+            ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            oos.writeObject(users);
+            return true;
+        } catch (IOException e) {
+            System.out.println("Erro ao guardar no ficheiro: " + e.getMessage());
+            return false;
+        }       
     }
     
     

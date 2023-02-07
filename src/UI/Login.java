@@ -17,8 +17,6 @@ public class Login extends javax.swing.JFrame {
     
     public Login() {
         initComponents();
-        errorLogin.setVisible(false);
-        errorRegisto.setVisible(false);
         TrocarMenu(1);   
     }
 
@@ -121,6 +119,11 @@ public class Login extends javax.swing.JFrame {
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jButton1MousePressed(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
         LoginPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 450, 260, 50));
@@ -239,6 +242,11 @@ public class Login extends javax.swing.JFrame {
                 jButton2MousePressed(evt);
             }
         });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         RegisterPanel.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 540, 260, 50));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -302,7 +310,7 @@ public class Login extends javax.swing.JFrame {
             String telemovel = this.registo_telemovel_input.getText();
 
             int status = l.Registo(email, password, nome, telemovel);
-            System.out.println(status);
+            //System.out.println(status);
             
             switch (status) {
                 case 1:
@@ -335,14 +343,21 @@ public class Login extends javax.swing.JFrame {
             String password = this.login_password_input.getText();
 
 
-            if(!l.Login(email, password)) {
-                this.errorLogin.setVisible(true);
+            if(l.Login(email, password)) {
+                this.dispose();
             }else {
-                
-                System.out.println("deu");
+                this.errorLogin.setVisible(true);               
             }
         }
     }//GEN-LAST:event_jButton1MousePressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -412,6 +427,9 @@ public class Login extends javax.swing.JFrame {
         RegisterPanel.setVisible(false);
         this.errorLogin.setVisible(false);
         this.errorRegisto.setVisible(false);
+        
+        errorLogin.setVisible(false);
+        errorRegisto.setVisible(false);
         
         switch(num) {
             case 1: LoginPanel.setVisible(true); break;

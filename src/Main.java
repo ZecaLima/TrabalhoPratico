@@ -10,12 +10,15 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
+        dados d = new dados();
         
-        File file = new File("utilizador.dat");
+        File file = new File("utilizador.dat");        
         if (!file.exists()) {
             try {
                 file.createNewFile();
                 System.out.println("Ficheiro criado com sucesso.");
+                Admin admin = new Admin("admin", "admin");        
+                d.addUser(admin);
             } catch (IOException e) {
                 System.out.println("Erro ao criar o ficheiro: " + e.getMessage());
             }
@@ -23,9 +26,7 @@ public class Main {
             System.out.println("File already exists.");
         }
         
-        Admin admin = new Admin("email", "password");
-        dados d = new dados();        
-        d.addUser(admin);
+        
         
         ArrayList<Utilizador> users = d.getAllUsers();       
         for (Utilizador cenas : users) {
