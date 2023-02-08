@@ -142,6 +142,26 @@ public class dados {
         }        
     }
     
+    public boolean removeReserva(String id){
+        ArrayList<Reserva> reservas = getAllReservas();
+        
+        for (int i = 0; i < reservas.size(); i++) {
+            Reserva aux = reservas.get(i);
+            if (aux.getIdReserva().equals(id)) {
+                reservas.remove(aux);
+            }
+        }
+        
+        try (FileOutputStream fos = new FileOutputStream("reservas.dat");
+            ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            oos.writeObject(reservas);
+            return true;
+        } catch (IOException e) {
+            System.out.println("Erro ao guardar no ficheiro: " + e.getMessage());
+            return false;
+        }       
+    }
+    
     
     public ArrayList<Venda> getAllVendas(){
         
@@ -155,5 +175,19 @@ public class dados {
         }
                 
         return vendas;
+    }
+    
+    public void addVenda(Venda venda){
+        
+        ArrayList<Venda> vendas = getAllVendas();
+        
+        vendas.add(venda);
+        
+        try (FileOutputStream fos = new FileOutputStream("vendas.dat");
+            ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            oos.writeObject(vendas);
+        } catch (IOException e) {
+            System.out.println("Erro ao guardar no ficheiro: " + e.getMessage());
+        }        
     }
 }

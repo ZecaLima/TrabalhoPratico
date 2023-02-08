@@ -5,6 +5,7 @@
 package BLL;
 
 import DAL.Carro;
+import DAL.Venda;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -51,5 +52,26 @@ public class BLLMenuDono {
             System.out.println("Erro ao guardar no ficheiro: " + e.getMessage());
             return false;
         }
+    }
+    
+    public boolean cancelarReserva(String id_reserva, String id_Carro){
+        dados.removeReserva(id_reserva);
+        alterarEstado(id_Carro, 2);        
+        return true;
+    }
+    
+    public boolean concluirVenda(String id_reserva, String id_cliente,String id_Carro){
+        dados.removeReserva(id_reserva);
+        alterarEstado(id_Carro, 0);
+        Venda venda = new Venda(id_Carro, id_cliente);
+        dados.addVenda(venda);
+        return true;
+    }
+    
+    public boolean concluirVenda(String id_cliente,String id_Carro){
+        alterarEstado(id_Carro, 0);
+        Venda venda = new Venda(id_Carro, id_cliente);
+        dados.addVenda(venda);
+        return true;
     }
 }

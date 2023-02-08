@@ -245,12 +245,22 @@ public class MenuDono extends javax.swing.JFrame {
         jButton9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton9.setForeground(new java.awt.Color(255, 255, 255));
         jButton9.setText("Confirmar Venda");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
         ReservasPanel.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 570, 160, 50));
 
         jButton10.setBackground(new java.awt.Color(153, 0, 0));
         jButton10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton10.setForeground(new java.awt.Color(255, 255, 255));
         jButton10.setText("Cancelar Reserva");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
         ReservasPanel.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 570, 160, 50));
 
         CriarVendasPanel.setBackground(new java.awt.Color(146, 129, 102));
@@ -317,6 +327,11 @@ public class MenuDono extends javax.swing.JFrame {
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText("Vender");
         jButton7.setBorder(null);
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
         CriarVendasPanel.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 330, 130, 60));
 
         ClientesPanel.setBackground(new java.awt.Color(146, 129, 102));
@@ -614,6 +629,62 @@ public class MenuDono extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         TrocarMenu(6);
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        if(reservasTable.getSelectedRow() != -1){
+            int resposta = JOptionPane.showConfirmDialog(this, "De certeza que pretende cancelar esta reserva?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if(resposta == JOptionPane.YES_OPTION) {
+                String id = (String) reservasTable.getValueAt(reservasTable.getSelectedRow(), 0);
+                String id_carro = (String) reservasTable.getValueAt(reservasTable.getSelectedRow(), 2);
+                boolean resultado = dono.cancelarReserva(id, id_carro);
+                if (resultado=true) {
+                    JOptionPane.showMessageDialog(this, "Reserva cancelada com sucesso!");
+                    TrocarMenu(1);
+                }
+            }
+        }else{
+           JOptionPane.showMessageDialog(this, "Selecione uma reserva primeiro!!");
+        }
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        if(reservasTable.getSelectedRow() != -1){
+            int resposta = JOptionPane.showConfirmDialog(this, "De certeza que pretende confirmar esta venda?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if(resposta == JOptionPane.YES_OPTION) {
+                String id = (String) reservasTable.getValueAt(reservasTable.getSelectedRow(), 0);
+                String id_cliente = (String) reservasTable.getValueAt(reservasTable.getSelectedRow(), 1);
+                String id_carro = (String) reservasTable.getValueAt(reservasTable.getSelectedRow(), 2);
+                boolean resultado = dono.concluirVenda(id, id_cliente, id_carro);
+                if (resultado=true) {
+                    JOptionPane.showMessageDialog(this, "Venda concluida com sucesso!");
+                    TrocarMenu(2);
+                }
+            }
+        }else{
+           JOptionPane.showMessageDialog(this, "Selecione uma reserva primeiro!!");
+        }
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        if(venda_clientes.getSelectedRow() != -1){
+            if(venda_carros.getSelectedRow() != -1){
+                int resposta = JOptionPane.showConfirmDialog(this, "De certeza que pretende fazer esta venda?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if(resposta == JOptionPane.YES_OPTION) {
+                  String id_cliente = (String) venda_clientes.getValueAt(venda_clientes.getSelectedRow(), 0);
+                  String id_carro = (String) venda_carros.getValueAt(venda_carros.getSelectedRow(), 0);
+                  boolean resultado = dono.concluirVenda(id_cliente, id_carro);
+                  if (resultado=true) {
+                      JOptionPane.showMessageDialog(this, "Venda concluida com sucesso!");
+                      TrocarMenu(2);
+                  }
+                }
+            }else{
+               JOptionPane.showMessageDialog(this, "Selecione um carro primeiro!!");
+            }
+        }else{
+           JOptionPane.showMessageDialog(this, "Selecione um cliente primeiro!!");
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
