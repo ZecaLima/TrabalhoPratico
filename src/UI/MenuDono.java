@@ -876,8 +876,8 @@ public class MenuDono extends javax.swing.JFrame {
         for(int i = 0; i<reservas.size(); i++){
             reservasTableModel.addRow(new Object[]{
                 reservas.get(i).getIdReserva(),
-                reservas.get(i).getIdCarro(),
                 reservas.get(i).getIdCliente(),
+                reservas.get(i).getIdCarro(),
                 reservas.get(i).getData(),
                     
             });           
