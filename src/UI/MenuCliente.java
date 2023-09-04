@@ -324,7 +324,7 @@ public class MenuCliente extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -532,7 +532,7 @@ public class MenuCliente extends javax.swing.JFrame {
         switch (i) {
             case 1:carrosPanel.setVisible(true); initCarrosTable(); break;
             case 2:reservasPanel.setVisible(true); initReservasTable(); break;
-            case 3:comprasPanel.setVisible(true);break;
+            case 3:comprasPanel.setVisible(true); initVendasTable(); break;
             case 4: this.PerfilPanel.setVisible(true); break;
             default:throw new AssertionError();
         }

@@ -171,7 +171,7 @@ public class MenuDono extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -349,7 +349,7 @@ public class MenuDono extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, true
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -456,7 +456,7 @@ public class MenuDono extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -639,7 +639,7 @@ public class MenuDono extends javax.swing.JFrame {
                 boolean resultado = dono.cancelarReserva(id, id_carro);
                 if (resultado=true) {
                     JOptionPane.showMessageDialog(this, "Reserva cancelada com sucesso!");
-                    TrocarMenu(1);
+                    TrocarMenu(2);
                 }
             }
         }else{
@@ -675,7 +675,7 @@ public class MenuDono extends javax.swing.JFrame {
                   boolean resultado = dono.concluirVenda(id_cliente, id_carro);
                   if (resultado=true) {
                       JOptionPane.showMessageDialog(this, "Venda concluida com sucesso!");
-                      TrocarMenu(2);
+                      TrocarMenu(3);
                   }
                 }
             }else{
